@@ -3,7 +3,7 @@ project(AutoExposure)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES src/main.cpp include/AutoExposure.h)
+set(SOURCE_FILES src/main.cpp include/AutoExposure.h src/AutoExposure.cpp)
 add_executable(AutoExposure ${SOURCE_FILES})
 
 find_package(OpenCV REQUIRED)
