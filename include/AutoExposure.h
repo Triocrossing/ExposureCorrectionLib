@@ -7,6 +7,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include "coreFunctionLib.h"
 namespace Exposure
 {
   // The type used in Core Function to indicate different strategies
@@ -41,4 +42,6 @@ namespace Exposure
     cv::Mat ApplyExposureCorrection(float thetaShadow, float thetaHighlight);
   };
 }
+
+#include "coreFunctionLib_impl.h"
 #endif //AUTOEXPOSURE_AUTOEXPOSURE_H
