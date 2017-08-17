@@ -10,38 +10,38 @@
 #include "coreFunctionLib.h"
 namespace Exposure
 {
-  // The type used in Core Function to indicate different strategies
-  enum coreFuncType {HistoEq, LinearTransform, SCurve};
+// The type used in Core Function to indicate different strategies
+enum coreFuncType {HistoEq, LinearTransform, SCurve};
 
-  // Common Part of Different Types
-  class ExposureCorrectorBase
-  {
+// Common Part of Different Types
+class ExposureCorrectorBase
+{
 
-  public:
-    // Default Ctor
-    ExposureCorrectorBase();
-    // Usual Ctor
-    ExposureCorrectorBase(cv::Mat _src_img);
+public:
+  // Default Ctor
+  ExposureCorrectorBase();
+  // Usual Ctor
+  ExposureCorrectorBase(cv::Mat _src_img);
 
-  protected:
-    // Source Image Copy
-    cv::Mat src_img;
-    // Destination Image Copy
-    cv::Mat des_img;
-  }; // ExposureCorrectorBase
+protected:
+  // Source Image Copy
+  cv::Mat src_img;
+  // Destination Image Copy
+  cv::Mat des_img;
+};
 
-  template <coreFuncType coreT>
-  class ExposureCorrector : public ExposureCorrectorBase
-  {};
+template <coreFuncType coreT>
+class ExposureCorrector : public ExposureCorrectorBase
+{};
 
-  template <>
-  class ExposureCorrector<SCurve> : public ExposureCorrectorBase
-  {
-  public:
-    ExposureCorrector(cv::Mat _src_img);
-    cv::Mat ApplyExposureCorrection(float thetaShadow, float thetaHighlight);
-  };
+template <>
+class ExposureCorrector<SCurve> : public ExposureCorrectorBase
+{
+public:
+  ExposureCorrector(cv::Mat _src_img);
+  cv::Mat ApplyExposureCorrection(float thetaShadow, float thetaHighlight);
+};
 }
 
-#include "coreFunctionLib_impl.h"
+#include "AutoExposure_impl.h"
 #endif //AUTOEXPOSURE_AUTOEXPOSURE_H

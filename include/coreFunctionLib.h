@@ -15,8 +15,11 @@
 namespace Exposure
 {
   float delta_function(float x);
+
   template<typename pixelType>
   cv::Mat SCurveAdjustement(cv::Mat inputImg, int numChannels, float thetaShadow, float thetaHighlight);
 
 }
+
+#include "coreFunctionLib_impl.h"
 #endif //AUTOEXPOSURE_COREFUNCTIONLIB_H

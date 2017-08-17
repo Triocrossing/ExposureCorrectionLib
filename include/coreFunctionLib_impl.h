@@ -5,6 +5,12 @@
 #ifndef AUTOEXPOSURE_COREFUNCTIONLIB_IMPL_H
 #define AUTOEXPOSURE_COREFUNCTIONLIB_IMPL_H
 #include <opencv2/core/mat.hpp>
+#include "coreFunctionLib.h"
+inline float Exposure::delta_function(float x)
+{
+  // k1xexp(-k2x^k3)
+  return DELTA_FUNC_K1*x*exp(-DELTA_FUNC_K2*pow(x,DELTA_FUNC_K3));
+}
 
 template<typename pixelType>
 cv::Mat Exposure::SCurveAdjustement(cv::Mat inputImg, int numChannels, float thetaShadow, float thetaHighlight)
