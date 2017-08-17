@@ -14,10 +14,14 @@
 
 namespace Exposure
 {
+  // delta_func used in SCurveAdjustment
   float delta_function(float x);
 
   template<typename pixelType>
   cv::Mat SCurveAdjustement(cv::Mat inputImg, int numChannels, float thetaShadow, float thetaHighlight);
+
+  template<typename pixelType>
+  cv::Mat LinearTransformAdjustment(cv::Mat inputImg, int numChannels, float gain, float brightness);
 
 }
 

@@ -28,6 +28,25 @@ cv::Mat ExposureCorrector<SCurve>::ApplyExposureCorrection(float thetaShadow, fl
       std::cout << "Insupport channel num" << std::endl;
   }
 }
+
+ExposureCorrector<LinearTransform>::ExposureCorrector(cv::Mat _src_img) : ExposureCorrectorBase(
+    _src_img)
+{}
+
+cv::Mat ExposureCorrector<LinearTransform>::ApplyExposureCorrection(float gain, float brightness)
+{
+  switch (src_img.channels())
+  {
+    case 1:
+      return LinearTransformAdjustment<cv::Vec<float, 1>>(src_img, 1, gain, brightness);
+
+    case 3:
+      return LinearTransformAdjustment<cv::Vec<float, 3>>(src_img, 3, gain, brightness);
+
+    default:
+      std::cout << "Insupport channel num" << std::endl;
+  }
+}
 //namespace Exposure
 }
 

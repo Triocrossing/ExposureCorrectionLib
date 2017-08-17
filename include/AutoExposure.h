@@ -41,6 +41,15 @@ public:
   ExposureCorrector(cv::Mat _src_img);
   cv::Mat ApplyExposureCorrection(float thetaShadow, float thetaHighlight);
 };
+
+template <>
+class ExposureCorrector<LinearTransform> : public ExposureCorrectorBase
+{
+public:
+  ExposureCorrector(cv::Mat _src_img);
+  cv::Mat ApplyExposureCorrection(float gain, float brightness);
+};
+// namespace Exposure
 }
 
 #include "AutoExposure_impl.h"
