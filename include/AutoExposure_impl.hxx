@@ -1,7 +1,7 @@
 #ifndef AUTOEXPOSURE_AUTOEXPOSURE_IMPL_H
 #define AUTOEXPOSURE_AUTOEXPOSURE_IMPL_H
 
-#include "AutoExposure.h"
+//#include "AutoExposure.h"
 namespace Exposure
 {
 ExposureCorrectorBase::ExposureCorrectorBase()
@@ -19,10 +19,10 @@ cv::Mat ExposureCorrector<SCurve>::ApplyExposureCorrection(float thetaShadow, fl
   switch (src_img.channels())
   {
     case 1:
-      return SCurveAdjustement<cv::Vec<float, 1>>(src_img, 1, thetaShadow, thetaHighlight);
+      return SCurveAdjustement<cv::Vec<float, 1> >(src_img, 1, thetaShadow, thetaHighlight);
 
     case 3:
-      return SCurveAdjustement<cv::Vec<float, 3>>(src_img, 3, thetaShadow, thetaHighlight);
+      return SCurveAdjustement<cv::Vec<float, 3> >(src_img, 3, thetaShadow, thetaHighlight);
 
     default:
       std::cout << "Insupport channel num" << std::endl;
@@ -38,10 +38,10 @@ cv::Mat ExposureCorrector<LinearTransform>::ApplyExposureCorrection(float gain, 
   switch (src_img.channels())
   {
     case 1:
-      return LinearTransformAdjustment<cv::Vec<float, 1>>(src_img, 1, gain, brightness);
+      return LinearTransformAdjustment<cv::Vec<float, 1> >(src_img, 1, gain, brightness);
 
     case 3:
-      return LinearTransformAdjustment<cv::Vec<float, 3>>(src_img, 3, gain, brightness);
+      return LinearTransformAdjustment<cv::Vec<float, 3> >(src_img, 3, gain, brightness);
 
     default:
       std::cout << "Insupport channel num" << std::endl;

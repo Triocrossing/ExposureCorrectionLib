@@ -5,7 +5,7 @@
 #ifndef AUTOEXPOSURE_COREFUNCTIONLIB_IMPL_H
 #define AUTOEXPOSURE_COREFUNCTIONLIB_IMPL_H
 #include <opencv2/core/mat.hpp>
-#include "coreFunctionLib.h"
+//#include "coreFunctionLib.h"
 inline float Exposure::delta_function(float x)
 {
   // k1xexp(-k2x^k3)
@@ -15,7 +15,7 @@ inline float Exposure::delta_function(float x)
 template<typename pixelType>
 cv::Mat Exposure::SCurveAdjustement(cv::Mat inputImg, int numChannels, float thetaShadow, float thetaHighlight)
 {
-  std::cout<<inputImg.type()<<std::endl;
+  //std::cout<<inputImg.type()<<std::endl;
   cv::Mat inputFloatImg, outputFloatImg;
 
   switch(numChannels)
@@ -68,7 +68,7 @@ cv::Mat Exposure::SCurveAdjustement(cv::Mat inputImg, int numChannels, float the
 
 template<typename pixelType>
 cv::Mat Exposure::LinearTransformAdjustment(cv::Mat inputImg, int numChannels, float gain, float brightness){
-  std::cout<<inputImg.type()<<std::endl;
+  //std::cout<<inputImg.type()<<std::endl;
   cv::Mat inputFloatImg, outputFloatImg;
 
   switch(numChannels)
@@ -120,4 +120,24 @@ cv::Mat Exposure::LinearTransformAdjustment(cv::Mat inputImg, int numChannels, f
 
   return outputImg;
 }
+  inline cv::Mat Exposure::SCurveAdjustementC1(cv::Mat inputImg, float thetaShadow, float thetaHighlight)
+  {
+    return SCurveAdjustement<cv::Vec<float, 1> >(inputImg, 1, thetaShadow, thetaHighlight);
+  }
+
+  inline cv::Mat Exposure::SCurveAdjustementC3(cv::Mat inputImg, float thetaShadow, float thetaHighlight)
+  {
+    return SCurveAdjustement<cv::Vec<float, 3> >(inputImg, 3, thetaShadow, thetaHighlight);
+  }
+
+  inline cv::Mat Exposure::LinearTransformAdjustmentC1(cv::Mat inputImg, float gain, float brightness)
+  {
+    return LinearTransformAdjustment<cv::Vec<float, 1> >(inputImg, 1, gain, brightness);
+  }
+
+  inline cv::Mat Exposure::LinearTransformAdjustmentC3(cv::Mat inputImg, float gain, float brightness)
+  {
+    return LinearTransformAdjustment<cv::Vec<float, 3> >(inputImg, 3, gain, brightness);
+  }
+
 #endif //AUTOEXPOSURE_COREFUNCTIONLIB_IMPL_H

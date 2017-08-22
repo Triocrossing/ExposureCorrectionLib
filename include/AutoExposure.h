@@ -7,7 +7,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <iostream>
-#include "coreFunctionLib.h"
+#include "exposureCoreFunc.h"
 namespace Exposure
 {
 // The type used in Core Function to indicate different strategies
@@ -52,5 +52,5 @@ public:
 // namespace Exposure
 }
 
-#include "AutoExposure_impl.h"
 #endif //AUTOEXPOSURE_AUTOEXPOSURE_H
+#include "AutoExposure_impl.hxx"

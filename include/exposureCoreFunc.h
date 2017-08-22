@@ -23,7 +23,17 @@ namespace Exposure
   template<typename pixelType>
   cv::Mat LinearTransformAdjustment(cv::Mat inputImg, int numChannels, float gain, float brightness);
 
+  /** Interfaces **/
+  /*********************************************************/
+  cv::Mat SCurveAdjustementC1(cv::Mat inputImg, float thetaShadow, float thetaHighlight);
+
+  cv::Mat SCurveAdjustementC3(cv::Mat inputImg, float thetaShadow, float thetaHighlight);
+
+  cv::Mat LinearTransformAdjustmentC1(cv::Mat inputImg, float gain, float brightness);
+
+  cv::Mat LinearTransformAdjustmentC3(cv::Mat inputImg, float gain, float brightness);
+
 }
 
-#include "coreFunctionLib_impl.h"
+#include "exposureCoreFunc_impl.hxx"
 #endif //AUTOEXPOSURE_COREFUNCTIONLIB_H
