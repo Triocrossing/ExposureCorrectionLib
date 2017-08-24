@@ -48,7 +48,7 @@ cv::Mat Exposure::SCurveAdjustement(cv::Mat inputImg, int numChannels, float the
     {
       // Pixelized core function
       float x = (*itInput)[idx];
-      (*itOutput)[idx]= x+thetaShadow*delta_function(x)-thetaHighlight*delta_function(1-x);
+      (*itOutput)[idx] =cv::min(x+thetaShadow*delta_function(x)-thetaHighlight*delta_function(1-x),1.0f);
     }
 
   cv::Mat outputImg;

@@ -8,6 +8,7 @@
 #include <opencv2/opencv.hpp>
 #include <math.h>
 
+//#define DELTA_FUNC_K1 5
 #define DELTA_FUNC_K1 5
 #define DELTA_FUNC_K2 14
 #define DELTA_FUNC_K3 1.6
