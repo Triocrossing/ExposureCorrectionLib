@@ -15,6 +15,19 @@
 
 namespace Exposure
 {
+
+  class ExposureKeypoint
+  {
+  public:
+    ExposureKeypoint(cv::KeyPoint _keyPoint, int _layer) :
+        keyPoint(_keyPoint),
+        layer(_layer){}
+
+    // Attributes
+    cv::KeyPoint keyPoint;
+    int layer;
+  };// Fin Class ExposureKeypoint
+
   // delta_func used in SCurveAdjustment
   float delta_function(float x);
 

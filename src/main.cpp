@@ -22,7 +22,7 @@ int main()
   //cv::Mat src_img = cv::imread("ImgBW.tiff");
 
 
-  cv::Mat SCurve_res = UnitTest<SCurve>(src_img,0.9,0.9);
+  cv::Mat SCurve_res = UnitTest<SCurve>(src_img,0.9,0);
   //UnitTest<SCurve>(0,0.9);
   //UnitTest<SCurve>(0.4,0.4);
   cv::Mat LinearTrans_res = UnitTest<LinearTransform>(src_img,9,0);

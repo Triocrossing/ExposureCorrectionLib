@@ -103,7 +103,10 @@ cv::Mat Exposure::LinearTransformAdjustment(cv::Mat inputImg, int numChannels, f
       float x = (*itInput)[idx];
 
       // Saturate cast to 1.0f
-      (*itOutput)[idx]= cv::min((gain*x+brightness), 1.0f);
+      if(gain>=0)
+        (*itOutput)[idx]=cv::min((gain*x+brightness),1.0f);
+      else
+        (*itOutput)[idx]=cv::max((x+(1-x)*gain+brightness),0.0f);
     }
 
   cv::Mat outputImg;
