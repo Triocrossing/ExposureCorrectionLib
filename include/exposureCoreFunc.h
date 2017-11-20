@@ -31,6 +31,8 @@ namespace Exposure
   // delta_func used in SCurveAdjustment
   float delta_function(float x);
 
+  cv::Point2f contrastBand2GainBrightness(cv::Point2f cb);
+
   template<typename pixelType>
   cv::Mat SCurveAdjustement(cv::Mat inputImg, int numChannels, float thetaShadow, float thetaHighlight);
 
@@ -46,6 +48,9 @@ namespace Exposure
   cv::Mat LinearTransformAdjustmentC1(cv::Mat inputImg, float gain, float brightness);
 
   cv::Mat LinearTransformAdjustmentC3(cv::Mat inputImg, float gain, float brightness);
+
+  cv::Mat SAT_ContrastBandC1(cv::Mat inputImg, cv::Point2f contrastBand);
+  cv::Mat SAT_ContrastBandC3(cv::Mat inputImg, cv::Point2f contrastBand);
 
 }
 

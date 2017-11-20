@@ -12,6 +12,18 @@ inline float Exposure::delta_function(float x)
   return DELTA_FUNC_K1*x*exp(-DELTA_FUNC_K2*pow(x,DELTA_FUNC_K3));
 }
 
+inline cv::Point2f Exposure::contrastBand2GainBrightness(cv::Point2f cb)
+{
+  cv::Point2f gainBrightnessPoint;
+  float a = cb.x;
+  float b = cb.y;
+
+  gainBrightnessPoint.x = -a/(b-a);
+  gainBrightnessPoint.y = 1/(b-a);
+
+  return gainBrightnessPoint;
+}
+
 template<typename pixelType>
 cv::Mat Exposure::SCurveAdjustement(cv::Mat inputImg, int numChannels, float thetaShadow, float thetaHighlight)
 {
@@ -141,6 +153,18 @@ cv::Mat Exposure::LinearTransformAdjustment(cv::Mat inputImg, int numChannels, f
   inline cv::Mat Exposure::LinearTransformAdjustmentC3(cv::Mat inputImg, float gain, float brightness)
   {
     return LinearTransformAdjustment<cv::Vec<float, 3> >(inputImg, 3, gain, brightness);
+  }
+
+  inline cv::Mat Exposure::SAT_ContrastBandC1(cv::Mat inputImg, cv::Point2f contrastBand)
+  {
+    cv::Point2f gbPt = Exposure::contrastBand2GainBrightness(contrastBand);
+    return LinearTransformAdjustment<cv::Vec<float, 1> >(inputImg, 1, gbPt.x, gbPt.y);
+  }
+
+  inline cv::Mat Exposure::SAT_ContrastBandC3(cv::Mat inputImg, cv::Point2f contrastBand)
+  {
+    cv::Point2f gbPt = contrastBand2GainBrightness(contrastBand);
+    return LinearTransformAdjustment<cv::Vec<float, 3> >(inputImg, 3, gbPt.x, gbPt.y);
   }
 
 #endif //AUTOEXPOSURE_COREFUNCTIONLIB_IMPL_H
