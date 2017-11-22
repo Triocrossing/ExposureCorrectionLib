@@ -18,8 +18,8 @@ inline cv::Point2f Exposure::contrastBand2GainBrightness(cv::Point2f cb)
   float a = cb.x;
   float b = cb.y;
 
-  gainBrightnessPoint.x = -a/(b-a);
-  gainBrightnessPoint.y = 1/(b-a);
+  gainBrightnessPoint.x = 1/(b-a);
+  gainBrightnessPoint.y = -a/(b-a);
 
   return gainBrightnessPoint;
 }
