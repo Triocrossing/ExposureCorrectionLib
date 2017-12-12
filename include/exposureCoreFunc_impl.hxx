@@ -167,4 +167,19 @@ cv::Mat Exposure::LinearTransformAdjustment(cv::Mat inputImg, int numChannels, f
     return LinearTransformAdjustment<cv::Vec<float, 3> >(inputImg, 3, gbPt.x, gbPt.y);
   }
 
+  inline cv::Mat Exposure::SAT_ContrastBandC1_Gf(cv::Mat inputImg, cv::Point2f contrastBand)
+  {
+    cv::Mat EqInput,EqGradientX,EqGradientY,EqGradient;
+    cv::equalizeHist(inputImg,EqInput);
+    cv::spatialGradient(EqInput,EqGradientX,EqGradientY);
+    cv::convertScaleAbs(EqGradientX, EqGradientX);
+    cv::convertScaleAbs(EqGradientY, EqGradientY);
+    cv::addWeighted(EqGradientX, 0.5, EqGradientY, 0.5, 0, EqGradient);
+
+    cv::ximgproc::guidedFilter(EqGradient,inputImg,inputImg,1,1);
+
+    cv::Point2f gbPt = Exposure::contrastBand2GainBrightness(contrastBand);
+    return LinearTransformAdjustment<cv::Vec<float, 1> >(inputImg, 1, gbPt.x, gbPt.y);
+  }
+
 #endif //AUTOEXPOSURE_COREFUNCTIONLIB_IMPL_H

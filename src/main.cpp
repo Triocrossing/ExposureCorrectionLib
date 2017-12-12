@@ -22,16 +22,16 @@ int main()
   //cv::Mat src_img = cv::imread("ImgBW.tiff");
 
 
-  cv::Mat SCurve_res = UnitTest<SCurve>(src_img,0.9,0);
+  //cv::Mat SCurve_res = UnitTest<SCurve>(src_img,0.9,0);
   //UnitTest<SCurve>(0,0.9);
   //UnitTest<SCurve>(0.4,0.4);
-  cv::Mat LinearTrans_res = UnitTest<LinearTransform>(src_img,9,0);
-  cv::Mat SAT_res1 = SAT_ContrastBandC1(src_img,cv::Point2f(0,1));
-  cv::Mat SAT_res2 = SAT_ContrastBandC1(src_img,cv::Point2f(0,0.15));
+  //cv::Mat LinearTrans_res = UnitTest<LinearTransform>(src_img,9,0);
+  cv::Mat SAT_res1 = SAT_ContrastBandC1(src_img,cv::Point2f(0,0.1));
+  cv::Mat SAT_res2 = SAT_ContrastBandC1_Gf(src_img,cv::Point2f(0,0.1));
 
   cv::imshow("Src", src_img);
-  cv::imshow("SCurve_res", SCurve_res);
-  cv::imshow("Linear_res", LinearTrans_res);
+  //cv::imshow("SCurve_res", SCurve_res);
+  //cv::imshow("Linear_res", LinearTrans_res);
   cv::imshow("SAT_res1", SAT_res1);
   cv::imshow("SAT_res2", SAT_res2);
   cv::waitKey(0);

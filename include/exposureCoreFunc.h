@@ -6,6 +6,7 @@
 #define AUTOEXPOSURE_COREFUNCTIONLIB_H
 
 #include <opencv2/opencv.hpp>
+#include <opencv2/ximgproc.hpp>
 #include <math.h>
 
 //#define DELTA_FUNC_K1 5
@@ -51,6 +52,9 @@ namespace Exposure
 
   cv::Mat SAT_ContrastBandC1(cv::Mat inputImg, cv::Point2f contrastBand);
   cv::Mat SAT_ContrastBandC3(cv::Mat inputImg, cv::Point2f contrastBand);
+
+  cv::Mat SAT_ContrastBandC1_Gf(cv::Mat inputImg, cv::Point2f contrastBand);
+//cv::Mat SAT_ContrastBandC3_Gf(cv::Mat inputImg, cv::Point2f contrastBand);
 
 }
 
